@@ -179,7 +179,7 @@ export const content = {
       },
       {
         text: "WebTech-Creations",
-        icon: BsInstagram,
+        icon: BsLinkedin,
         link: "https://www.linkedin.com/company/webtech-creations/",
       },
     ],
