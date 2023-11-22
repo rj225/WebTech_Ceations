@@ -1,7 +1,7 @@
 
 import { GrMail } from "react-icons/gr";
 import { MdArrowForward, MdCall } from "react-icons/md";
-import { BsInstagram } from "react-icons/bs";
+import { BsLinkedin } from "react-icons/bs";
 import { TbSmartHome } from "react-icons/tb";
 import { BiUser } from "react-icons/bi";
 import { RiServiceLine, RiProjectorLine } from "react-icons/ri";
@@ -179,7 +179,7 @@ export const content = {
       },
       {
         text: "WebTech-Creations",
-        icon: BsInstagram,
+        icon: BsLinkedin,
         link: "https://www.linkedin.com/company/webtech-creations/",
       },
     ],
