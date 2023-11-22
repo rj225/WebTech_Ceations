@@ -1,33 +1,39 @@
-import { createElement, useRef } from "react";
+import { createElement, useRef, useState } from "react";
 import { content } from "../Content";
-import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
+import { useForm, ValidationError } from '@formspree/react'; // Import Formspree
 
 const Contact = () => {
+  const [state, handleSubmit] = useForm("mjvqddww"); // Formspree form setup
+
+  const [name,setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [msg,setMsg] = useState('');
+
+
   const { Contact } = content;
   const form = useRef();
 
-  // Sending Email
-  const sendEmail = (e) => {
+  // Sending Email using Formspree
+  const sendEmail = async (e) => {
     e.preventDefault();
+alert("Form Submitted Successfully");
 
-    emailjs
-      .sendForm(
-      'service_6i9x0sj', 'template_t9801ki', form.current, 'Ap5XTVp3rRN8dmbsG'
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          // Clear all input field values
-          form.current.reset();
-          // Success toast message
-          toast.success("Email send Successfully");
-        },
-        (error) => {
-          console.log(error.text);
-          toast.error(error.text);
-        }
-      );
+
+setEmail('');
+setName('');
+setMsg('');
+    // Handle Formspree submission
+    const result = await handleSubmit(e);
+
+    
+    if (result.succeeded) {
+      form.current.reset();
+      toast.success("Email sent successfully");
+    } else {
+      
+      form.current.reset();
+    }
   };
 
   return (
@@ -44,7 +50,7 @@ const Contact = () => {
         <div className="flex gap-10 md:flex-row flex-col">
           <form
             ref={form}
-            onSubmit={sendEmail}
+            onSubmit={sendEmail} // Use the new sendEmail function
             data-aos="fade-up"
             className="flex-1 flex flex-col gap-5"
           >
@@ -55,6 +61,8 @@ const Contact = () => {
               placeholder="Name"
               required
               className="border border-slate-600 p-3 rounded"
+              onChange={event => setName(event.target.value)}
+              value={name}
             />
             <input
               type="email"
@@ -63,16 +71,26 @@ const Contact = () => {
               placeholder="Email Id"
               required
               className="border border-slate-600 p-3 rounded"
+              onChange={event => setEmail(event.target.value)}
+              value={email}
             />
             <textarea
               name="message"
               placeholder="Message"
               className="border border-slate-600 p-3 rounded h-44"
               required
+              onChange={event => setMsg(event.target.value)}
+              value={msg}
             ></textarea>
+            <ValidationError 
+              prefix="Message" 
+              field="message"
+              errors={state.errors}
+            />
             <button
-              className="btn self-start
-            bg-white text-dark_primary"
+              type="submit"
+              disabled={state.submitting}
+              className="btn self-start bg-white text-dark_primary"
             >
               Submit
             </button>
