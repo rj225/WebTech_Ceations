@@ -178,9 +178,9 @@ export const content = {
         link: "https://wa.me/7857847749",
       },
       {
-        text: "rahulbediya78",
+        text: "WebTech-Creations",
         icon: BsInstagram,
-        link: "https://www.instagram.com/rahulbediya78/",
+        link: "https://www.linkedin.com/company/webtech-creations/",
       },
     ],
   },
