@@ -172,11 +172,7 @@ export const content = {
         icon: MdCall,
         link: "https://wa.me/7857847749",
       },
-      {
-        text: "+91 7857847749",
-        icon: MdCall,
-        link: "https://wa.me/7857847749",
-      },
+ 
       {
         text: "WebTech-Creations",
         icon: BsLinkedin,
